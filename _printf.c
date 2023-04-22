@@ -40,4 +40,5 @@ int _printf(const char *format, ...)
 		r_count += 1;
 	}
 	return (r_count);
+	va_end(args);
 }
