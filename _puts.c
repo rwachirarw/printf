@@ -14,7 +14,7 @@ int _puts(char *str)
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
-		r_count++;
+		r_count += 1;
 		i++;
 	}
 	return (r_count);
