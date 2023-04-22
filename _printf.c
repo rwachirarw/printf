@@ -42,8 +42,10 @@ int _printf(const char *format, ...)
 			i++;
 			_putchar('%');
 		}
-		else
-			return (-1);
+		else {
+			_putchar(format[i]);
+			i++;
+		}
 		r_count += 1;
 	}
 	va_end(args);
