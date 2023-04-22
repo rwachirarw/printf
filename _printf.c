@@ -5,35 +5,28 @@
  * @format: character string
  * Return: the number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
 	va_list args;
-	unsigned int i = 0, r_count = 0, r_scount = 0;
-	int c;
-	char *s;
+	int r_count = 0, i;
+	int r_scount = 0;
 
-	if (format == NULL)
-		return (-1);
 	va_start(args, format);
-	for (; format[i] != '\0'; i++)
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
+		{
 			_putchar(format[i]);
+		}
 		else if (format[i + 1] == 'c')
 		{
-			c = va_arg(args, int);
-			if (c == EOF)
-				return (-1);
-			_putchar(c);
+			_putchar(va_arg(args, int));
 			i++;
 		}
 		else if (format[i + 1] == 's')
 		{
-			s = va_arg(args, char *);
-			if (s == NULL)
-				return (-1);
-			r_scount = _puts(s);
+			r_scount = _puts(va_arg(args, char *));
 			i++;
 			r_count += (r_scount - 1);
 		}
@@ -42,12 +35,19 @@ int _printf(const char *format, ...)
 			i++;
 			_putchar('%');
 		}
-		else {
+		else if (format[i + 1] == '\0')
+		{
+			break;
+		}
+		else
+		{
 			_putchar(format[i]);
 			i++;
 		}
+
 		r_count += 1;
 	}
+
 	va_end(args);
-	return (r_count);
+	return r_count;
 }
