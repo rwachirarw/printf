@@ -9,11 +9,11 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	unsigned int i, r_count = 0, r_scount = 0;
+	unsigned int i = 0, r_count = 0, r_scount = 0;
 
 	va_start(args, format);
 
-	for (i = 0; format[i] != '\0'; i++)
+	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
@@ -24,12 +24,11 @@ int _printf(const char *format, ...)
 			_putchar(va_arg(args, int));
 			i++;
 		}
-
 		else if (format[i + 1] == 's')
 		{
 			r_scount = _puts(va_arg(args, char *));
 			i++;
-			r_count += (r_scount - 1);
+			r_count += r_scount;
 		}
 
 		else if (format[i + 1] == '%')
@@ -37,8 +36,16 @@ int _printf(const char *format, ...)
 			i++;
 			_putchar('%');
 		}
-		r_count += 1;
+
+		if (format[i] == 's')
+		{
+			r_count += 1 - 1;
+		}
+		else
+		{
+			r_count += 1;
+		}
 	}
-	return (r_count);
 	va_end(args);
+	return (r_count);
 }
