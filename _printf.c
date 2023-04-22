@@ -10,21 +10,19 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	unsigned int i = 0, r_count = 0, r_scount = 0;
+	int c;
+	char *s;
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(args, format);
-
-	while (format[i] != '\0')
+	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
-		{
 			_putchar(format[i]);
-		}
 		else if (format[i + 1] == 'c')
 		{
-			int c = va_arg(args, int);
+			c = va_arg(args, int);
 			if (c == EOF)
 				return (-1);
 			_putchar(c);
@@ -32,24 +30,20 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == 's')
 		{
-			char *s = va_arg(args, char *);
+			s = va_arg(args, char *);
 			if (s == NULL)
 				return (-1);
 			r_scount = _puts(s);
 			i++;
 			r_count += (r_scount - 1);
 		}
-
 		else if (format[i + 1] == '%')
 		{
 			i++;
 			_putchar('%');
 		}
 		else
-		{
 			return (-1);
-		}
-		i++;
 		r_count += 1;
 	}
 	va_end(args);
