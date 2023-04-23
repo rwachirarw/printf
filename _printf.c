@@ -13,11 +13,13 @@ int _printf(const char *format, ...)
 	int c;
 	char *s;
 
-	va_start(args, format);
-
 	if (format == NULL)
 		return (-1);
-	for (; format[i] != '\0'; i++)
+
+	if (format[i] == '\0')
+		return (0);
+
+	va_start(args, format);
 	{
 		if (format[i] != '%')
 			_putchar(format[i]);
