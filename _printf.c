@@ -20,6 +20,8 @@ int _printf(const char *format, ...)
 		return (0);
 
 	va_start(args, format);
+
+	for(; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 			_putchar(format[i]);
