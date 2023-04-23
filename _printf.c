@@ -13,9 +13,10 @@ int _printf(const char *format, ...)
 	int c;
 	char *s;
 
+	va_start(args, format);
+
 	if (format == NULL)
 		return (-1);
-	va_start(args, format);
 	for (; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -41,6 +42,11 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			_putchar('%');
+		}
+		else
+		{
+			_putchar(format[i]);
+			i++;
 		}
 
 		r_count += 1;
