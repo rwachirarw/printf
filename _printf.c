@@ -28,16 +28,12 @@ int _printf(const char *format, ...)
 		else if (format[i + 1] == 'c')
 		{
 			c = va_arg(args, int);
-			if (c == EOF)
-				return (-1);
 			_putchar(c);
 			i++;
 		}
 		else if (format[i + 1] == 's')
 		{
 			s = va_arg(args, char *);
-			if (s == NULL)
-				return (-1);
 			r_scount = _puts(s);
 			i++;
 			r_count += (r_scount - 1);
