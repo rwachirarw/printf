@@ -5,52 +5,43 @@
  * @format: character string
  * Return: the number of characters printed
  */
-
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
+	match_convert m[] = {
+		{"%s", _print_str}, {"%c", _print_chr},
+		{"%%", _print_cent},
+		{"%i", _print_int}, {"%d", _print_dec}
+	};
+
 	va_list args;
-	unsigned int i = 0, r_count = 0, r_scount = 0;
-	int c;
-	char *s;
-
-	if (format == NULL)
-		return (-1);
-
-	if (format[i] == '\0')
-		return (0);
+	int i = 0, j, len = 0, match_found = 0;
 
 	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
-	for(; format[i] != '\0'; i++)
+	while ((format[i]) != '\0')
 	{
-		if (format[i] != '%')
-			_putchar(format[i]);
-		else if (format[i + 1] == 'c')
-		{
-			c = va_arg(args, int);
-			_putchar(c);
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			s = va_arg(args, char *);
-			r_scount = _puts(s);
-			i++;
-			r_count += (r_scount - 1);
-		}
-		else if (format[i + 1] == '%')
-		{
-			i++;
-			_putchar('%');
-		}
-		else
-		{
-			_putchar(format[i]);
-			i++;
-		}
+		match_found = 0;
 
-		r_count += 1;
+		for (j = 0; j < 5; j++)
+		{
+			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
+			{
+				len += m[j].f(args);
+				i += 2;
+				match_found = 1;
+				break;
+			}
+		}
+		if (!match_found)
+		{
+			_putchar(format[i]);
+			len++;
+			i++;
+		}
 	}
 	va_end(args);
-	return (r_count);
+	return (len);
 }
+
