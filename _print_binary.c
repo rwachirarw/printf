@@ -27,5 +27,5 @@ int _printf_binary(va_list args)
 		cont++;
 		_putchar('0');
 	}
-	return cont;
+	return (cont);
 }
