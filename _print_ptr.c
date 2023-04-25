@@ -8,58 +8,41 @@
  */
 int _print_ptr(va_list args)
 {
-	void *p;
-	char *s = "(nil)";
-	long int a;
-	int i, b;
+	void *p = va_arg(args, void*);
+	char hex[20];
+	int i, digit;
+	unsigned long int a;
 
-	p = va_arg(args, void*);
 	if (p == NULL)
 	{
-		for (i = 0; s[i] != '\0'; i++)
-			_putchar(s[i]);
-		return (i);
+		return (write(1, "(nil)", 5));
 	}
-
-	a = (unsigned long int)p;
-	_putchar('0');
-	_putchar('x');
-	b = _print_hex_excl(a);
-	return (b + 2);
-}
-
-/**
- * _print_hex_excl - prints hexadecimal
- * @num: input number to print
- * Return: count
- */
-
-int _print_hex_excl(unsigned long int num)
-{
-	long int i;
-	long int *array;
-	long int counter = 0;
-	unsigned long int temp = num;
-
-	while (num / 16 != 0)
+	else
 	{
-		num /= 16;
-		counter++;
+		a = (unsigned long int)p;
+		i = 0;
+		write(1, "0x", 2);
+		while (a > 0)
+		{
+			digit = a % 16;
+			if (digit < 10)
+			{
+				hex[i++] = digit + '0';
+			}
+			else
+			{
+				hex[i++] = digit - 10 + 'a';
+			}
+			a /= 16;
+		}
+		if (i == 0)
+		{
+			hex[i++] = '0';
+		}
+		while (--i >= 0)
+		{
+			write(1, &hex[i], 1);
+		}
+		return (i + 3);
 	}
-	counter++;
-	array = (long int *) malloc(counter * sizeof(long int));
-
-	for (i = 0; i < counter; i++)
-	{
-		array[i] = temp % 16;
-		temp /= 16;
-	}
-	for (i = counter - 1; i >= 0; i--)
-	{
-		if (array[i] > 9)
-			array[i] = array[i] + 39;
-		_putchar(array[i] + '0');
-	}
-	free(array);
-	return (counter);
 }
