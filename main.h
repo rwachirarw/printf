@@ -36,5 +36,6 @@ int _print_hex(va_list args);
 int _print_HEX(va_list args);
 int _print_excl_str(va_list args);
 int _print_HEX_aux(unsigned int num);
-
+int _print_ptr(va_list args);
+int _print_hex_excl(unsigned long int num);
 #endif
