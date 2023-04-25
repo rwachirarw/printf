@@ -1,10 +1,11 @@
 #include "main.h"
 
 /**
- * _print_binary - prints a binary number.
- * @args: arguments.
- * Return: 1.
+ * _print_binary - prints numbers in binary
+ * @args: function parametere
+ * Return: 1
  */
+
 int _print_binary(va_list args)
 {
 	int flag = 0;
@@ -23,12 +24,10 @@ int _print_binary(va_list args)
 			cont++;
 		}
 	}
-
 	if (cont == 0)
 	{
 		cont++;
 		_putchar('0');
 	}
-
 	return (cont);
 }

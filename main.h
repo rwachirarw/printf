@@ -30,6 +30,11 @@ int _strlenc(const char *s);
 int _print_dec(va_list args);
 int _print_int(va_list args);
 int _print_binary(va_list args);
-
+int _print_unsigned(va_list args);
+int _print_oct(va_list args);
+int _print_hex(va_list args);
+int _print_HEX(va_list args);
+int _print_excl_str(va_list args);
+int _print_HEX_aux(unsigned int num);
 
 #endif
