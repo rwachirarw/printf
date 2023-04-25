@@ -8,16 +8,19 @@
  */
 int _print_str_rev(va_list args)
 {
+	char *str;
+	int i, count = 0;
 
-	char *s = va_arg(args, char*);
-	int i;
-	int j = 0;
+	str = va_arg(args, char *);
 
-	if (s == NULL)
-		s = "(null)";
-	while (s[j] != '\0')
-		j++;
-	for (i = j - 1; i >= 0; i--)
-		_putchar(s[i]);
-	return (j);
+	if (str == NULL)
+		str = "(null)";
+	for (i = 0; str[i]; i++)
+		count++;
+
+	for (i = i - 1; i >= 0; i--)
+		_putchar(str[i]);
+
+	return (count);
+
 }
