@@ -10,7 +10,8 @@ int _printf(const char * const format, ...)
 	match_convert m[] = {
 		{"%s", _print_str}, {"%c", _print_chr},
 		{"%%", _print_cent},
-		{"%i", _print_int}, {"%d", _print_dec}
+		{"%i", _print_int}, {"%d", _print_dec}, 
+		{"%b", _print_binary}
 	};
 
 	va_list args;
@@ -24,7 +25,7 @@ int _printf(const char * const format, ...)
 	{
 		match_found = 0;
 
-		for (j = 0; j < 5; j++)
+		for (j = 0; j < 6; j++)
 		{
 			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
 			{

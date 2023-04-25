@@ -29,5 +29,7 @@ int _strlen(char *s);
 int _strlenc(const char *s);
 int _print_dec(va_list args);
 int _print_int(va_list args);
+int _print_binary(va_list args);
+
 
 #endif
