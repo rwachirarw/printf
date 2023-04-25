@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _print_rot13 - print str to ROT13
+ * _print_rot13 - print string in ROT13
  * @args:  arguments
  * Return: counter
  *
