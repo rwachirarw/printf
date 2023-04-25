@@ -11,7 +11,9 @@ int _printf(const char * const format, ...)
 		{"%s", _print_str}, {"%c", _print_chr},
 		{"%%", _print_cent},
 		{"%i", _print_int}, {"%d", _print_dec},
-		{"%b", _print_binary}
+		{"%b", _print_binary}, {"%u", _print_unsigned},
+		{"%o", _print_oct}, {"%x", _print_hex},
+		{"%X", _print_HEX}
 	};
 
 	va_list args;
@@ -25,7 +27,7 @@ int _printf(const char * const format, ...)
 	{
 		match_found = 0;
 
-		for (j = 0; j < 6; j++)
+		for (j = 0; j < 10; j++)
 		{
 			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
 			{
