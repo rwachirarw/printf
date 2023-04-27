@@ -42,7 +42,7 @@ int _print_excl_str(va_list args)
 
 /**
  * _print_HEX_aux - prints a hexadecimal number
- * @num: number passed
+ * @num: Hexadecimal number passed
  * Return: count
  */
 
